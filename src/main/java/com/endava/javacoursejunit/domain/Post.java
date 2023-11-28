@@ -10,11 +10,15 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "t_post")
+@Data
+@NoArgsConstructor
 public class Post {
 
     @Id
@@ -46,6 +50,11 @@ public class Post {
     @PreUpdate
     protected void onUpdate() {
         dateUpdated = new Date();
+    }
+
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 
 }

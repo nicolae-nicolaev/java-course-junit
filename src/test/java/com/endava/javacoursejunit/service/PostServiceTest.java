@@ -5,6 +5,7 @@ import com.endava.javacoursejunit.domain.User;
 
 import com.endava.javacoursejunit.repository.PostRepository;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -53,6 +54,7 @@ class PostServiceTest {
     }
 
     @Test
+    @DisplayName("Get post by id - success flow")
     void shouldGetPostById() {
         when(postRepository.findById(any(Integer.class))).thenReturn(Optional.of(mockPost));
 
@@ -63,6 +65,7 @@ class PostServiceTest {
     }
 
     @Test
+    @DisplayName("Get post by id - throws NoSuchElementException")
     void shouldThrowNoSuchElementExceptionWhenNoPostsFound() {
         when(postRepository.findById(any(Integer.class))).thenReturn(Optional.empty());
 
@@ -70,6 +73,7 @@ class PostServiceTest {
     }
 
     @Test
+    @DisplayName("Get user's posts")
     void shouldFindPostsByUserId() {
         when(postRepository.findPostsByUserId(any(Integer.class))).thenReturn(List.of(mockPost));
 
@@ -82,6 +86,7 @@ class PostServiceTest {
     }
 
     @Test
+    @DisplayName("Save a new post")
     void shouldSavePost() {
         when(postRepository.save(any(Post.class))).thenReturn(mockPost);
 
